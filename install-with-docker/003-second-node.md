@@ -14,8 +14,13 @@ In the second host terminal:
 
 `docker run -d                                           \
   --name=storageos                                       \
+<<<<<<< HEAD
   --env=HOSTNAME=host02                                  \
   --env=ADVERTISE_IP=[[HOST2_IP]]                         \
+=======
+  --env=HOSTNAME=[[HOST_IP]]                             \
+  --env=ADVERTISE_IP=[[HOST_IP]]                         \
+>>>>>>> 400a247... Add init container to Docker install. Add explanation to k8s PVC section
   --env=JOIN=[[HOST_IP]]                                 \
   --net=host                                             \
   --pid=host                                             \
