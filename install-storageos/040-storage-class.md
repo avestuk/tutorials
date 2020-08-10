@@ -34,10 +34,10 @@ parameters:
 END
 ```{{execute}}
 
-And a StorageClass for production.
+And a StorageClass for production. 
 
 ```
-kubectl create -f- <<END
+kubectl create -f-<<END
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -75,25 +75,3 @@ To see all the available StorageClasses run the command below. Notice that
 there are three StorageClasses with the provider: `csi.storageos.com`
 
 `kubectl get sc`{{execute}}
-
-StorageOS feature labels can also be passed as labels in a PVC spec.
-
-For instance, the following would create a Volume with 2 replicas.
-
-```
-kubectl create -f- <<END
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-1
-  labels:
-    storageos.com/replicas: "2"
-spec:
-  storageClassName: dev
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-END
-```{{execute}}

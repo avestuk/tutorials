@@ -39,10 +39,37 @@ Because we provisioned a PVC using the `prod` StorageClass, which had the
 replicas. This means that the volume has one replica that it is healthy and
 ready.
 
+StorageOS feature labels can also be passed in the StorageClass as shown with the `prod` StorageClass, or you can set labels on the PVC.
+
+For instance, the following would create a Volume with 2 replicas.
+
+```
+kubectl create -f<<END
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-1
+  labels:
+    storageos.com/replicas: "2"
+spec:
+  storageClassName: dev
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+END
+```{{execute}}
+
+Get the volumes again using the StorageOS CLI and see that the newly created volume has 2/2 replicas
+
+`kubectl exec -ti cli -n kube-system -- storageos get volumes`{{execute}}
+
+
 Lets create a Pod that uses the Volume.
 
 ```
-kubectl create -f- <<END
+kubectl create -f-<<END
 apiVersion: v1
 kind: Pod
 metadata:

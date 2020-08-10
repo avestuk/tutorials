@@ -88,7 +88,9 @@ Verify StorageOS Installation.
 
 `kubectl -n kube-system get pods -lapp=storageos -w`{{execute}}
 
-> The above command watches the pods created by the StorageOSCluster resource. Note that pods typically take approximately 40 seconds to enter the Running Phase. Press `Ctrl+C` to continue once the pods are up.
+> The above command watches the pods created by the StorageOSCluster resource.
+> Note that pods typically take approximately 40 seconds to enter the Running
+> Phase. Press `Ctrl+C` to continue once the pods are up.
 
 Once the pods are all in the Running state the installation is complete! You have created a StorageOS cluster.
 
